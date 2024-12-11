@@ -1,4 +1,4 @@
-pub fn average_distance(distances: &Vec<Vec<Option<u32>>>) -> f64 {
+pub fn avgdistance(distances: &Vec<Vec<Option<u32>>>) -> f64 {
     let mut total = 0;
     let mut count: usize = 0;
     for distance in distances.iter() {
@@ -37,7 +37,7 @@ pub fn furthest(all_distances: &Vec<Vec<Option<u32>>>) -> Vec<(usize, usize, u32
 //This function calculates the distribution for distances between nodes in the graph
 //The user inputs the amount of degrees they want to know the distribution for 
 //And the function returns the percentage of total connections occur with in x degrees of seperation
-pub fn degree_distribution(distances: &Vec<Vec<Option<u32>>>, degrees: u32) -> f64 {
+pub fn distribution(distances: &Vec<Vec<Option<u32>>>, degrees: u32) -> f64 {
     let mut total: u32 = 0;
     let mut target: u32 = 0;
     for (nodeone, node) in distances.iter().enumerate() {
