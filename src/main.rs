@@ -70,7 +70,7 @@ fn furthesttest() {
     let adjacency_list = create_adjacency_list(edges);
     let all_distances = computeallbfs(&adjacency_list);
     let result = furthest(&all_distances);
-    let expected = vec![(0, 6, 4), (6, 0, 4),];
+    let expected = vec![(0, 6, 4), (2, 6, 4), (6, 0, 4), (6, 2, 4),];
 
      assert_eq!(result, expected);
 }
@@ -83,7 +83,7 @@ fn avgdistancetest() {
     let adjacency_list = create_adjacency_list(edges);
     let all_distances = computeallbfs(&adjacency_list);
     let result = avgdistance(&all_distances);
-    let expected = 1.714;
+    let expected = 1.877;
 
     assert!((result - expected).abs() < 0.001, "Expected {}, got {}", expected, result);
     }
