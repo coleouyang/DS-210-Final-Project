@@ -63,3 +63,28 @@ fn main() {
         result
     }
 }
+
+#[test]
+fn furthesttest() {
+    let edges = vec![(0, 1), (1, 2), (1, 3), (3, 4), (3, 5), (5, 6),];
+    let adjacency_list = create_adjacency_list(edges);
+    let all_distances = computeallbfs(&adjacency_list);
+    let result = furthest(&all_distances);
+    let expected = vec![(0, 6, 4), (6, 0, 4),];
+
+     assert_eq!(result, expected);
+}
+
+
+#[test]
+fn avgdistancetest() {
+    let edges = vec![(0, 1), (1, 2), (1, 3), (3, 4), (3, 5), (5, 6),];
+
+    let adjacency_list = create_adjacency_list(edges);
+    let all_distances = computeallbfs(&adjacency_list);
+    let result = avgdistance(&all_distances);
+    let expected = 1.714;
+
+    assert!((result - expected).abs() < 0.001, "Expected {}, got {}", expected, result);
+    }
+
