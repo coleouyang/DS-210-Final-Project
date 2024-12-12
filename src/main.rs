@@ -13,16 +13,17 @@ use graph_analysis::{avgdistance, furthest, distribution};
 fn main() {
     let graph = reader("/Users/coleouyang/Downloads/twitch/ENGB/musae_ENGB_edges.csv");
     let adjlist = create_adjacency_list(graph);
+    let distances = computeallbfs(&adjlist);
+
     print_adjacency_list(&adjlist);
+    printallbfs(&distances);
 
     let node = 15;
     let lastnode = 100;
     onebfs(node, lastnode, &adjlist);
     
-    let distances = computeallbfs(&adjlist);
     let avgdistances = avgdistance(&distances);
     println!("The average distance is {}", avgdistances);
-    printallbfs(&distances);
 
     let furthestnodes = furthest(&distances);
     println!("Nodes with the maximum distance are ");
@@ -31,12 +32,11 @@ fn main() {
     }
     
     for target_degree in 1..=7 {
-        // Calculate and print the percentage of nodes at the current distance
         let percentage = distribution(&distances, target_degree);
         println!("Percentage of nodes at distance {}: {:.2}%", target_degree, percentage);
     }
 
-
+    //Reads the csv file
     fn reader(path: &str) -> Vec<(usize, usize)> {
         let mut result: Vec<(usize, usize)> = Vec::new();
         let file = File::open(path).expect("Could not open file");

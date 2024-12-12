@@ -1,10 +1,10 @@
 use std::collections::VecDeque;
-
+//Performs BFS for all nodes
 pub fn computeallbfs(adj: &Vec<Vec<usize>>) -> Vec<Vec<Option<u32>>> {
     (0..adj.len())
         .map(|node| {
             let mut distance = vec![None; adj.len()];
-            distance[node] = Some(0); // Distance to itself is zero
+            distance[node] = Some(0); 
             let mut queue = VecDeque::from([node]);
 
             while let Some(vertex) = queue.pop_front() {
@@ -16,15 +16,13 @@ pub fn computeallbfs(adj: &Vec<Vec<usize>>) -> Vec<Vec<Option<u32>>> {
                 });
             }
 
-            println!("{}", node); // Progress update for user
+            println!("{}", node); 
             distance
         })
         .collect()
 }
 
-//This function prints ALL the BFS's for each node. IT takes a while to run 
-//I seperated the function computeALLBFS and printALLBFS because running them together took too long and gave my computer issues
-//I used the lecture on BFS for this function and also researched online
+//Prints all the BFS for each individual node
 pub fn printallbfs(distances: &[Vec<Option<u32>>]) {
     for (current_node, distances) in distances.iter().enumerate() {
         print!("BFS for node {}: ", current_node);
@@ -35,7 +33,8 @@ pub fn printallbfs(distances: &[Vec<Option<u32>>]) {
     }
 }
 
-
+//Performs BFS for one selected node a certain amount of other nodes
+//Fast runtime and can target specific nodes of interest
 pub fn onebfs(selected: usize, lastnode: usize, adj: &Vec<Vec<usize>>) {
     let mut distance: Vec<Option<u32>> = vec![None; adj.len()];
     distance[selected] = Some(0); 

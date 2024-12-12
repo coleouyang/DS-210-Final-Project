@@ -1,3 +1,4 @@
+//Computes the average distance between nodes
 pub fn avgdistance(distances: &Vec<Vec<Option<u32>>>) -> f64 {
     let mut total = 0;
     let mut count: usize = 0;
@@ -12,9 +13,7 @@ pub fn avgdistance(distances: &Vec<Vec<Option<u32>>>) -> f64 {
     let average = total as f64 / count as f64;
     return average;
 }
-//This function finds the nodes in the data set which have the highest degrees of freedom away from each other
-//This works by finding all of the distances between every node and iterating through them
-//It outputs a vector with all of node pairs with the furthest distance
+//Returns the pairs of nodes that are the furthest away from one another in terms of degrees of seperation
 pub fn furthest(all_distances: &Vec<Vec<Option<u32>>>) -> Vec<(usize, usize, u32)> {
     let mut maxd = 0;
     let mut furthest = Vec::new();
@@ -34,16 +33,15 @@ pub fn furthest(all_distances: &Vec<Vec<Option<u32>>>) -> Vec<(usize, usize, u32
     return furthest
 }
 
-//This function calculates the distribution for distances between nodes in the graph
-//The user inputs the amount of degrees they want to know the distribution for 
-//And the function returns the percentage of total connections occur with in x degrees of seperation
+
+//Calculates the distribution of nodes between degrees
 pub fn distribution(distances: &Vec<Vec<Option<u32>>>, degrees: u32) -> f64 {
     let mut total: u32 = 0;
     let mut target: u32 = 0;
     for (nodeone, node) in distances.iter().enumerate() {
         for (nodetwo, &d) in node.iter().enumerate() {
             if nodeone != nodetwo { //This gets rid of nodes with distance 0 
-                if let Some(distance) = d { //The internet helped me with this line of code
+                if let Some(distance) = d { 
                     total += 1;
                     if distance == degrees {
                         target += 1;

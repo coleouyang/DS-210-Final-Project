@@ -1,4 +1,4 @@
-//This function creates an adjacency list to use for BFS from the inputed graph
+//Creates an adjacency list from the inputted dataset
 pub fn create_adjacency_list(graph: Vec<(usize, usize)>) -> Vec<Vec<usize>> {
     let length = graph
         .iter()
@@ -14,9 +14,8 @@ pub fn create_adjacency_list(graph: Vec<(usize, usize)>) -> Vec<Vec<usize>> {
     adj
 }
 
-//This function is used the print the adjacency list
+//Prints the adjacency list
 pub fn print_adjacency_list(adjacency_lists: &Vec<Vec<usize>>) {
-    //To print the entire adjacency list
     for (node, neighbors) in adjacency_lists.iter().enumerate() {
         println!("Node {}: {:?}", node, neighbors);
     }
